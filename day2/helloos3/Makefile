@@ -16,7 +16,4 @@ run: $(TARGET_IMG)
 	$(QEMU) -drive format=raw,file=$(TARGET_IMG),if=floppy
 
 clean:
-	rm -rf $(TARGETE_DIR)
-
-#gcc -nostdlib -o bin/helloos3.img -Tlink.ls helloos3.s
-#qemu-system-i386 -drive format=raw,file=bin/helloos3.img,if=floppy
+	rm -rf $(TARGET_DIR)

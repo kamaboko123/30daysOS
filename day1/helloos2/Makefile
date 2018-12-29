@@ -20,5 +20,5 @@ run: $(TARGET_IMG)
 	$(QEMU) -fda $(TARGET_IMG)
 
 clean:
-	rm -rf $(TARGETE_DIR)
+	rm -rf $(TARGET_DIR)
 

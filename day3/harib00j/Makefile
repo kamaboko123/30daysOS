@@ -35,12 +35,12 @@ $(IPL_BIN): $(IPL_SRC) $(IPL_LINK_SCRIPT)
 	gcc -nostdlib -o $@ -T$(IPL_LINK_SCRIPT) $(IPL_SRC)
 	gcc -T $(IPL_LINK_SCRIPT) -c -g -Wa,-a,-ad $(IPL_SRC) -o bin/ipl.o > $(LIST_IPL)
 
-$(BOOTPACK_BIN): $(BOOTPAC_SRC) $(ASM_LIB_BIN)
+$(BOOTPACK_BIN): $(BOOTPACK_SRC) $(ASM_LIB_BIN)
 	mkdir -p $(TARGET_DIR)
 	
 	gcc -nostdlib -m32 -c -o bin/bootpack.o $(BOOTPACK_SRC)
-	#ld -m elf_i386 -o $@ -T bootpack.ls -e HariMain --oformat=binary bin/bootpack.o $(ASM_LIB_BIN)
-	gcc -nostdlib -m32 -e HariMain -T bootpack.ls -o $@ bin/bootpack.o $(ASM_LIB_BIN)
+	ld -m elf_i386 -o $@ -T bootpack.ls -e HariMain --oformat=binary bin/bootpack.o $(ASM_LIB_BIN)
+	#gcc -nostdlib -m32 -e HariMain -T bootpack.ls -o $@ bin/bootpack.o $(ASM_LIB_BIN)
 	
 	#ボツ
 	#gcc -nostdlib -m32 -T bootpack.ls -o $@ $(BOOTPACK_SRC)

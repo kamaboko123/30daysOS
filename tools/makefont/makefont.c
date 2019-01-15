@@ -64,6 +64,8 @@ int main(int argc, char *argv[]){
         printf("    .byte 0x%02x, 0x%02x, 0x%02x, 0x%02x\n", out[i].line[12], out[i].line[13], out[i].line[14], out[i].line[15]);
     }
     
+    free(out);
+    
     return 0;
 }
 

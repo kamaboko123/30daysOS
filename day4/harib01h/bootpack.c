@@ -1,8 +1,3 @@
-/*
-This linker script is created by refer following page.
-http://takeisamemo.blogspot.com/2014/09/os30os-3-7.html
-*/
-
 #define COL8_000000 0
 #define COL8_FF0000 1
 #define COL8_00FF00 2

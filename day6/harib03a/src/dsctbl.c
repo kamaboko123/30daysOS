@@ -1,4 +1,4 @@
-#include "dsctbl.h"
+#include "bootpack.h"
 
 void init_gdtidt(void){
     struct SEGMENT_DESCRIPTOR *gdt = (struct SEGMENT_DESCRIPTOR *) 0x00270000;

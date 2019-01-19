@@ -1,4 +1,4 @@
-#include "graphic.h"
+#include "bootpack.h"
 
 void init_mouse_cursor8(char *mouse, char bc){
     int x;

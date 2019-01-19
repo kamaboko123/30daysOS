@@ -1,5 +1,4 @@
-#include <stdarg.h>
-#include "clib.h"
+#include "bootpack.h"
 
 void *sprintf(char *s, char *format, ...){
     va_list args;

@@ -86,13 +86,13 @@ io_store_eflags:
 #void load_gdtr(int limit, int addr)
 load_gdtr:
     mov 4(%esp), %ax #limit
-    mov 6(%esp), %ax
+    mov %ax, 6(%esp)
     lgdt 6(%esp)
     ret
 
 #void load_idtr(int limti, int addr)
 load_idtr:
     mov 4(%esp), %ax #limit
-    mov 6(%esp), %ax
-    lgdt 6(%esp)
+    mov %ax, 6(%esp)
+    lidt 6(%esp)
     ret

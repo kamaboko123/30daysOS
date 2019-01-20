@@ -10,7 +10,7 @@ void init_gdtidt(void){
     }
     
     set_segmdesc(gdt + 1, 0xffffffff, 0x00000000, 0x4092);
-    set_segmdesc(gdt + 2, 0xfff7ffff, 0x00280000, 0x409a);
+    set_segmdesc(gdt + 2, 0x0007ffff, 0x00280000, 0x409a);
     
     load_gdtr(0xffff, 0x00270000);
     
@@ -30,7 +30,7 @@ void set_segmdesc(struct SEGMENT_DESCRIPTOR *sd, unsigned int limit, int base, i
     sd->base_low = base & 0xffff;
     sd->base_mid = (base >> 16) & 0xff;
     sd->access_right = ar & 0xff;
-    sd->limit_high = (((limit >> 16) & 0xff) | (ar >> 8) & 0xf0);
+    sd->limit_high = (((limit >> 16) & 0x0f) | (ar >> 8) & 0xf0);
     sd->base_high = (base >> 24) & 0xff;
 }
 

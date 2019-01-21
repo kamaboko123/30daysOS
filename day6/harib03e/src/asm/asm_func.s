@@ -93,7 +93,7 @@ load_gdtr:
     lgdt 6(%esp)
     ret
 
-#void load_idtr(int limti, int addr)
+#void load_idtr(int limit, int addr)
 load_idtr:
     mov 4(%esp), %ax #limit
     mov %ax, 6(%esp)
@@ -116,7 +116,7 @@ asm_inthandler21:
     pop %ds
     pop %es
     iret
-
+    #es, ds, ssを同じ値に揃えるのは、「C言語ではこれらが同じセグメントを指していると思いこむため」らしい
 
 #void asm_inthandler2c(void)
 asm_inthandler2c:

@@ -64,7 +64,7 @@ unsigned int to_dec_asc(char *buf, int n){
     unsigned int ret;
     unsigned int i;
     
-    i = ndigit(n);
+    i = ndigit(n, 10);
     ret = i;
     p = buf;
     
@@ -82,7 +82,7 @@ unsigned int to_hex_asc(char *buf, int n, int capital){
     unsigned int i;
     char charset[] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'};
     
-    i = ndigit(n);
+    i = ndigit(n, 16);
     ret = i;
     p = buf;
     
@@ -100,11 +100,11 @@ unsigned int to_hex_asc(char *buf, int n, int capital){
 }
 
 
-unsigned int ndigit(unsigned int n){
-    unsigned i = 1;
+unsigned int ndigit(unsigned int n, unsigned int base){
+    unsigned int i = 1;
     
-    while(n >= 10){
-        n /= 10;
+    while(n >= base){
+        n /= base;
         i++;
     }
     return(i);

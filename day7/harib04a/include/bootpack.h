@@ -35,7 +35,7 @@ void asm_inthandler27(void);
 void *sprintf(char *s, char *format, ...);
 unsigned int to_dec_asc(char *buf, int n);
 unsigned int to_hex_asc(char *buf, int n, int capital);
-unsigned int ndigit(unsigned int n);
+unsigned int ndigit(unsigned int n, unsigned int base);
 unsigned int upow(unsigned int x, unsigned int n);
 void upcase(char *str, unsigned int n);
 int iscapital(char c);

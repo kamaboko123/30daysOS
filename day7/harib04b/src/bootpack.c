@@ -23,7 +23,7 @@ void HariMain(void){
     my = (binfo->scrny - 28 - 16) / 2;
     putblock8_8(binfo->vram, binfo->scrnx, 16, 16, mx, my, mcursor, 16);
     
-    sprintf(str, "(%d, %d)", mx, my);
+    sprintf(str, "%d", mx);
     //putfonts8_asc(binfo->vram, binfo->scrnx, 0, 0, COL8_FFFFFF, str);
     
     sprintf(str, "scrnx = %d", binfo->scrnx);

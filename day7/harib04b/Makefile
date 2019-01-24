@@ -2,7 +2,7 @@
 
 CC = gcc
 CFLAGS = -nostdlib -m32 -fno-builtin
-INCLUDE = -I include
+INCLUDE = -I include -I ../../tools/stdlibc/include
 
 LD = ld
 LFLAGS = -m elf_i386
@@ -25,8 +25,6 @@ SYSTEM_IMG = bin/haribote.bin
 ASMLIB_SRC = src/asm/asm_func.s
 ASMLIB = $(TARGET_DIR)/asm_func.o
 
-BINLIB = lib/hankaku.o
-
 IPL_SRC = src/asm/boot/ipl10.s
 IPL_LS = scripts/ipl.ls
 IPL = $(TARGET_DIR)/ipl10.bin
@@ -35,16 +33,33 @@ OSL_SRC = src/asm/boot/asmhead.s
 OSL_LS = scripts/asmhead.ls
 OSL = $(TARGET_DIR)/asmhead.bin
 
+#external lib
+STDLIBC_DIR = ../../tools/stdlibc
+STDLIBC = $(STDLIBC_DIR)/bin/stdlib.o
+
+FONT_DIR = ../../tools/makefont
+FONT = $(FONT_DIR)/bin/hankaku.o
+
+EXCLUDE_EXLIB_DEP_FILE = *.swp
+
 IMG = $(TARGET_DIR)/haribote.img
 
 all: $(IMG)
+
+$(FONT) : $(shell find $(FONT_DIR) -type f -not -name '$(EXCLUDE_EXLIB_DEP_FILE)' -not -name '$(notdir $(FONT))')
+	@echo [Dependent Files] FONT:  $^
+	cd $(FONT_DIR); make
+
+$(STDLIBC) : $(shell find $(STDLIBC_DIR) -type f -not -name '$(EXCLUDE_EXLIB_DEP_FILE)' -not -name '$(notdir $(STDLIBC))')
+	@echo [Dependent Files] STDLIBC: $^
+	cd $(STDLIBC_DIR); make all
 
 $(IMG): $(IPL) $(OSL) $(OS)
 	cat $(OSL) $(OS) > $(SYSTEM_IMG)
 	mformat -f 1440 -B $(IPL) -C -i $(IMG) ::
 	mcopy $(SYSTEM_IMG) -i $(IMG) ::
 
-$(OS): $(addprefix $(TARGET_DIR)/, $(notdir $(OS_SRC:.c=.o))) $(ASMLIB) $(BINLIB)
+$(OS): $(addprefix $(TARGET_DIR)/, $(notdir $(OS_SRC:.c=.o))) $(STDLIBC) $(ASMLIB) $(FONT)
 	ld $(LFLAGS) -o $@ -T $(OS_LS) -e HariMain --oformat=binary $^
 
 $(ASMLIB): $(ASMLIB_SRC)
@@ -71,4 +86,5 @@ debug: all
 
 clean:
 	rm -rf $(TARGET_DIR)
-
+	cd $(FONT_DIR); make clean
+	cd $(STDLIBC_DIR); make clean

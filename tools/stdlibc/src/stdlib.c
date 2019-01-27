@@ -9,7 +9,6 @@ void *_sprintf(char *s, char *format, ...){
     char tmp[16];
     int i;
     
-    int sign_flg;
     int data_int;
     char pad_char;
     
@@ -17,7 +16,6 @@ void *_sprintf(char *s, char *format, ...){
     
     while(*format != '\0'){
         pad_flg = FALSE;
-        sign_flg = FALSE;
         conv_len = 0;
         
         if(*format == '%'){

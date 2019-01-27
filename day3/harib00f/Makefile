@@ -1,6 +1,6 @@
 AS=gcc
-IPL_LINK_SCRIPT=ipl.ls
-OS_LINK_SCRIPT=os.ls
+IPL_LINK_SCRIPT=ipl.lds
+OS_LINK_SCRIPT=os.lds
 
 IPL_SRC=ipl.s
 OS_SRC=haribote.s

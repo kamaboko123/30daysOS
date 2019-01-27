@@ -1,5 +1,5 @@
 AS=gcc
-AS_OPT=-nostdlib -T link.ls
+AS_OPT=-nostdlib -T link.lds
 SRC=helloos3.s
 TARGET_DIR=bin
 TARGET_IMG=$(TARGET_DIR)/helloos3.img

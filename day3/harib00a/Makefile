@@ -1,5 +1,5 @@
 AS=gcc
-LINK_SCRIPT=link.ls
+LINK_SCRIPT=link.lds
 AS_OPT=-nostdlib -T $(LINK_SCRIPT)
 SRC=ipl.s
 TARGET_DIR=bin

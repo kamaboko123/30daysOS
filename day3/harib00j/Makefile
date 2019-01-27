@@ -1,5 +1,5 @@
-IPL_LINK_SCRIPT=ipl.ls
-OS_LINK_SCRIPT=os.ls
+IPL_LINK_SCRIPT=ipl.lds
+OS_LINK_SCRIPT=os.lds
 
 IPL_SRC=ipl10.s
 OS_SRC=asmhead.s
@@ -39,7 +39,7 @@ $(BOOTPACK_BIN): $(BOOTPACK_SRC) $(ASM_LIB_BIN)
 	mkdir -p $(TARGET_DIR)
 	
 	gcc -nostdlib -m32 -c -o bin/bootpack.o $(BOOTPACK_SRC)
-	ld -m elf_i386 -o $@ -T bootpack.ls -e HariMain --oformat=binary bin/bootpack.o $(ASM_LIB_BIN)
+	ld -m elf_i386 -o $@ -T bootpack.lds -e HariMain --oformat=binary bin/bootpack.o $(ASM_LIB_BIN)
 	#gcc -nostdlib -m32 -e HariMain -T bootpack.ls -o $@ bin/bootpack.o $(ASM_LIB_BIN)
 	
 	#ボツ

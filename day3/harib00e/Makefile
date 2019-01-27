@@ -1,5 +1,5 @@
 AS=gcc
-LINK_SCIRPT=link.ls
+LINK_SCIRPT=link.lds
 
 IPL_SRC=ipl.s
 OS_SRC=haribote.s

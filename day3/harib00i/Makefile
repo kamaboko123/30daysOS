@@ -1,5 +1,5 @@
-IPL_LINK_SCRIPT=ipl.ls
-OS_LINK_SCRIPT=os.ls
+IPL_LINK_SCRIPT=ipl.lds
+OS_LINK_SCRIPT=os.lds
 
 IPL_SRC=ipl10.s
 OS_SRC=asmhead.s
@@ -34,7 +34,7 @@ $(IPL_BIN): $(IPL_SRC) $(IPL_LINK_SCRIPT)
 
 $(BOOTPACK_BIN): $(BOOTPAC_SRC)
 	mkdir -p $(TARGET_DIR)
-	gcc -nostdlib -m32 -T bootpack.ls -o $@ $(BOOTPACK_SRC)
+	gcc -nostdlib -m32 -T bootpack.lds -o $@ $(BOOTPACK_SRC)
 	
 	#以下ボツ
 	#gcc -nostdlib -m32 -c -o bin/bootpack.o $(BOOTPACK_SRC)

@@ -24,10 +24,10 @@ void HariMain(void){
     my = (binfo->scrny - 28 - 16) / 2;
     putblock8_8(binfo->vram, binfo->scrnx, 16, 16, mx, my, mcursor, 16);
     
-    sprintf(str, "%d", mx);
+    _sprintf(str, "%d", mx);
     //putfonts8_asc(binfo->vram, binfo->scrnx, 0, 0, COL8_FFFFFF, str);
     
-    sprintf(str, "scrnx = %d", binfo->scrnx);
+    _sprintf(str, "scrnx = %d", binfo->scrnx);
     putfonts8_asc(binfo->vram, binfo->scrnx, 16, 64, COL8_FFFFFF, str);
    
     putfonts8_asc(binfo->vram, binfo->scrnx, 31, 31, COL8_000000, "Haribote OS.");
@@ -52,12 +52,12 @@ void HariMain(void){
             keybuf.next_r %= KEYBUF_SIZE;
             
             io_sti();
-            sprintf(str, "%02X", i);
+            _sprintf(str, "%02X", i);
             
             boxfill8(binfo->vram, binfo->scrnx, COL8_008484, 0, 16, 15, 31);
             putfonts8_asc(binfo->vram, binfo->scrnx, 0, 16, COL8_FFFFFF, str);
             
-            sprintf(str, "keybuf(r,w) = (%d : %d)", keybuf.next_r, keybuf.next_w);
+            _sprintf(str, "keybuf(r,w) = (%d : %d)", keybuf.next_r, keybuf.next_w);
             boxfill8(binfo->vram, binfo->scrnx, COL8_008484, 0, 92, 320, 107);
             putfonts8_asc(binfo->vram, binfo->scrnx, 0, 92, COL8_FFFFFF, str);
             

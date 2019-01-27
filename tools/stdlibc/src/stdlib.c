@@ -25,25 +25,34 @@ void *_sprintf(char *s, char *format, ...){
             
             _memset(tmp, '\0', sizeof(tmp));
             
-            if(*format == '0'){
-                format++;
+            if(_isdigit(*format)){
                 pad_flg = TRUE;
-                pad_char = '0';
+                
+                if(*format == '0'){
+                    pad_char = '0';
+                }
+                else{
+                    pad_char = ' ';
+                }
                 
                 disp_digit = _atoi(format);
                 while(_isdigit(*format)) format++;
             }
-            /*
-            else if(_isdigit(format)){
-                pad_char = ' ';
-                pad_flg = TRUE;
-            }*/
             
             if(*format == 'd'){
                 data_int = va_arg(args, int);
                 if((data_int & 0x8000) != 0){
-                    sign_flg = TRUE;
-                    conv_len = _to_dec_asc(tmp, ~data_int + 1);
+                    
+                    if(pad_char == ' '){
+                        *tmp = '-';
+                        conv_len = _to_dec_asc(tmp + 1, ~data_int + 1) + 1;
+                    }
+                    else if(pad_char == '0'){
+                        *s = '-';
+                        s++;
+                        conv_len = _to_dec_asc(tmp, ~data_int + 1);
+                        disp_digit--;
+                    }
                 }
                 else{
                     conv_len = _to_dec_asc(tmp, data_int);
@@ -56,14 +65,9 @@ void *_sprintf(char *s, char *format, ...){
                 conv_len = _to_hex_asc(tmp, va_arg(args, int), TRUE);
             }
             
-            if(sign_flg){
-                *s = '-';
-                s++;
-            }
-            
             if(pad_flg && (conv_len < disp_digit)){
                 for(i = conv_len; i < disp_digit; i++){
-                    *s = '0';
+                    *s = pad_char;
                     s++;
                 }
             }

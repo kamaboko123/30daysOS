@@ -114,7 +114,7 @@ void HariMain(void){
                 io_sti();
                 
                 if(mouse_phase == 0){
-                    if(i = 0xfa) mouse_phase++;
+                    if(i == 0xfa) mouse_phase++;
                 }
                 else if(mouse_phase > 0){
                     mouse_dbuf[mouse_phase - 1] = i;

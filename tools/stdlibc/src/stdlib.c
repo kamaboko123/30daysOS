@@ -4,15 +4,20 @@ void *_sprintf(char *s, char *format, ...){
     va_list args;
     
     char disp_digit;
-    int num_flg;
+    int pad_flg;
     unsigned int conv_len;
     char tmp[16];
     int i;
     
+    int sign_flg;
+    int data_int;
+    char pad_char;
+    
     va_start(args, format);
     
     while(*format != '\0'){
-        num_flg = FALSE;
+        pad_flg = FALSE;
+        sign_flg = FALSE;
         conv_len = 0;
         
         if(*format == '%'){
@@ -22,14 +27,27 @@ void *_sprintf(char *s, char *format, ...){
             
             if(*format == '0'){
                 format++;
-                num_flg = TRUE;
+                pad_flg = TRUE;
+                pad_char = '0';
                 
                 disp_digit = _atoi(format);
                 while(_isdigit(*format)) format++;
             }
+            /*
+            else if(_isdigit(format)){
+                pad_char = ' ';
+                pad_flg = TRUE;
+            }*/
             
             if(*format == 'd'){
-                conv_len = _to_dec_asc(tmp, va_arg(args, int));
+                data_int = va_arg(args, int);
+                if((data_int & 0x8000) != 0){
+                    sign_flg = TRUE;
+                    conv_len = _to_dec_asc(tmp, ~data_int + 1);
+                }
+                else{
+                    conv_len = _to_dec_asc(tmp, data_int);
+                }
             }
             if(*format == 'x'){
                 conv_len = _to_hex_asc(tmp, va_arg(args, int), FALSE);
@@ -38,7 +56,12 @@ void *_sprintf(char *s, char *format, ...){
                 conv_len = _to_hex_asc(tmp, va_arg(args, int), TRUE);
             }
             
-            if(num_flg && (conv_len < disp_digit)){
+            if(sign_flg){
+                *s = '-';
+                s++;
+            }
+            
+            if(pad_flg && (conv_len < disp_digit)){
                 for(i = conv_len; i < disp_digit; i++){
                     *s = '0';
                     s++;

@@ -77,6 +77,7 @@ void HariMain(void){
                 io_sti();
                 
                 if(mouse_decode(&mdec, i) != 0){
+                    //_sprintf(str, "[lcr %04d %04d]", mdec.x, mdec.y);
                     _sprintf(str, "[lcr %04d %04d]", mdec.x, mdec.y);
                     
                     //1bit目 Left

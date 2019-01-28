@@ -1,5 +1,5 @@
-IPL_LINK_SCRIPT=ipl.ls
-OS_LINK_SCRIPT=os.ls
+IPL_LINK_SCRIPT=ipl.lds
+OS_LINK_SCRIPT=os.lds
 
 IPL_SRC=ipl10.s
 OS_SRC=asmhead.s
@@ -40,7 +40,7 @@ $(BOOTPACK_BIN): $(BOOTPACK_SRC) $(ASM_LIB_BIN) $(FONT_BIN) sprintf.c
 	mkdir -p $(TARGET_DIR)
 	gcc -nostdlib -m32 -c -o bin/bootpack.o $(BOOTPACK_SRC)
 	gcc -nostdlib -m32 -c -o bin/sprintf.o sprintf.c
-	ld -m elf_i386 -o $@ -T bootpack.ls -e HariMain --oformat=binary bin/bootpack.o $(ASM_LIB_BIN) $(FONT_BIN) bin/sprintf.o
+	ld -m elf_i386 -o $@ -T bootpack.lds -e HariMain --oformat=binary bin/bootpack.o $(ASM_LIB_BIN) $(FONT_BIN) bin/sprintf.o
 
 $(ASM_LIB_BIN): $(ASM_LIB_SRC)
 	mkdir -p $(TARGET_DIR)

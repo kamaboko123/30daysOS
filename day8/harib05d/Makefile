@@ -15,7 +15,7 @@ TMP_DIR = $(TARGET_DIR)/tmp
 
 OS_SRC_DIR = src
 OS_SRC=$(wildcard $(OS_SRC_DIR)/*.c)
-OS_LS = scripts/bootpack.ls
+OS_LS = scripts/bootpack.lds
 OS = $(TARGET_DIR)/os.bin
 
 OS_ENTRY_POINT = HariMain
@@ -26,11 +26,11 @@ ASMLIB_SRC = src/asm/asm_func.s
 ASMLIB = $(TARGET_DIR)/asm_func.o
 
 IPL_SRC = src/asm/boot/ipl10.s
-IPL_LS = scripts/ipl.ls
+IPL_LS = scripts/ipl.lds
 IPL = $(TARGET_DIR)/ipl10.bin
 
 OSL_SRC = src/asm/boot/asmhead.s
-OSL_LS = scripts/asmhead.ls
+OSL_LS = scripts/asmhead.lds
 OSL = $(TARGET_DIR)/asmhead.bin
 
 #external lib

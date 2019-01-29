@@ -100,7 +100,7 @@ call memcpy
 
 #bootpack起動
 movl $BOTPAK, %ebx
-movl 16(%ebx), %ecx
+movl 16(%ebx), %ecx #データセクションのサイズ
 add $3, %ecx #ECX+=3
 SHR $2, %ecx #ECX/=4
 jz skip #転送するべきものがない
@@ -112,8 +112,15 @@ call memcpy
 
 skip:
     mov 12(%ebx), %esp #スタック初期化
+    
+    #特殊なjmp命令
+    #CSに2*8が代入される
+    #2番目のセグメントの0x1b番地にjmpする
+    #実際には0x28001b番地(GDTで設定した通り)、これはbootpackの0x1b(=27byte目)番地にあたる
+    #jmp先のデータはE9(JMP)で、bootpackのエントリポイントにjmpする（らしい？）
+    #完全に理解した（わかってない）
     ljmpl $2*8, $0x0000001b
-
+    
 #キーボードの処理が終わるのを待つ
 waitkbdout:
     inb $0x64, %al

@@ -32,7 +32,10 @@
 
     #PICが割り込みを受け付けないようにする
     #よくわからないけどAT互換機の仕様では、PICの初期化をする場合CLI前にやる必要があるらしい
-
+    #
+    #io_out8(PIC0_IMR, 0xff)
+    #io_out8(PIC0_IMR, 0xff)
+    #をやっているのと同じ（IMRに0xffを送ると信号が来てもマスクされて無視する）
     movb $0xff, %al
     outb %al, $0x21
     nop #out命令を連続させるとうまくいかない機種がある？らしい
@@ -55,10 +58,11 @@
 .arch i486
 
     lgdt (GDTR0) #暫定GDT
+    #ここからプロテクトモードに入るための処理
     movl %cr0, %eax
     andl $0x7ffffff, %eax
     orl $0x00000001, %eax
-    movl %eax, %cr0
+    movl %eax, %cr0 #ページングを使用しないプロテクトモード(CR0の最上位bitを0, 最下位bitを1にする)
     jmp pipelineflush
 pipelineflush:
     movw $1*8, %ax
@@ -67,11 +71,13 @@ pipelineflush:
     movw %ax, %fs
     movw %ax, %gs
     movw %ax, %ss
+    #csレジスタは後回し
+    #それ以外は0x0008に揃える(GDT + 1)
 
 #bootpack転送
-movl $bootpack, %esi
-movl $BOTPAK, %edi
-movl $512*1024/4, %ecx
+movl $bootpack, %esi #source (このasmheadの後ろにbootpackのバイナリをくっつけるので$bootpackはこのファイルの末尾)
+movl $BOTPAK, %edi #destination
+movl $512*1024/4, %ecx #memcpyのサイズはdouble word(4byte=32bit)単位なので、コピーするバイト数を4で割る
 call memcpy
 
 
@@ -84,12 +90,12 @@ movl $512/4, %ecx
 call memcpy
 
 #残り全部
-movl $DSKCAC0+512, %esi
-movl $DSKCAC+512, %edi
+movl $DSKCAC0+512, %esi #source
+movl $DSKCAC+512, %edi #destination
 movl $0, %ecx
 movb (CYLS), %cl
 imull $512*18*2/4, %ecx #シリンダ数からバイト数/4に変換
-sub $512/4, %ecx
+sub $512/4, %ecx #ブートセクタ分を引く
 call memcpy
 
 #bootpack起動
@@ -108,7 +114,7 @@ skip:
     mov 12(%ebx), %esp #スタック初期化
     ljmpl $2*8, $0x0000001b
 
-
+#キーボードの処理が終わるのを待つ
 waitkbdout:
     inb $0x64, %al
     andb $0x02, %al
@@ -116,6 +122,8 @@ waitkbdout:
     jnz waitkbdout
     ret
 
+#データのコピー
+#esiのアドレスからediのアドレスにコピー 4byteずつecx回コピー
 memcpy:
     movl (%esi), %eax
     add $4, %esi
@@ -125,9 +133,13 @@ memcpy:
     jnz memcpy #引き算結果が0でなければmemcpyへ
     ret
 
-
+#16byteアラインメント(GDT0ラベルが8の倍数になってないとパフォーマンスが落ちるらしい、バイト境界とかそのへんの話？)
 .align 16
-GDT0:
+GDT0: 
+    #bootpacckを動かすための仮のGDT
+    #以下で設定されるものと同じ
+    #set_segmdesc(gdt+1, 0xffffffff, 0x00000000, AR_DATA32_RW) 読み書き可能
+    #set_segmdesc(gdt+2, LIMIT_BOTPAK, ADR_BOTPACK, AR_CODE32_ER) 実行可能(bootpack用)
     .skip 8, 0x00
     .word 0xffff, 0x0000, 0x9200, 0x00cf
     .word 0xffff, 0x0000, 0x9a28, 0x0047
@@ -135,6 +147,6 @@ GDT0:
 
 GDTR0:
     .word 8*3-1
-    .int GDT0
+    .long GDT0
 
 bootpack:

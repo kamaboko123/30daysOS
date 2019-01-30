@@ -49,7 +49,7 @@ void HariMain(void){
     //メモリ容量
     //最大3GBまで
     i = memtest(0x004000000, 0xbfffffff) / (1024 * 1024);
-    _sprintf(str, "memory %dMB%%", i);
+    _sprintf(str, "memory %dMB", i);
     putfonts8_asc(binfo->vram, binfo->scrnx, 0, 32, COL8_FFFFFF, str);
     
     //PIC1とキーボードを許可(11111001)

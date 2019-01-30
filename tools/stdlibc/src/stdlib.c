@@ -23,7 +23,13 @@ void *_sprintf(char *s, char *format, ...){
             
             _memset(tmp, '\0', sizeof(tmp));
             
-            if(_isdigit(*format)){
+            if(*format == '\0') break;
+            else if(*format == '%'){
+                *s = '%';
+                s++;
+                goto next;
+            }
+            else if(_isdigit(*format)){
                 pad_flg = TRUE;
                 
                 if(*format == '0'){
@@ -77,6 +83,8 @@ void *_sprintf(char *s, char *format, ...){
           *s = *format;
           s++;
         }
+        
+next:
         format++;
     }
     *s = *format;

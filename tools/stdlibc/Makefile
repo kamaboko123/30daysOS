@@ -23,6 +23,9 @@ test: $(OBJ) $(TEST_MAIN_SRC)
 	$(CC) $(INCLUDE) $(CFLAGS) -c -o $(TEST_MAIN) $(TEST_MAIN_SRC)
 	$(CC) -m32 $(INCLUDE) -o $(TEST) $(TEST_MAIN) $(OBJ) -lcunit
 
+test_run : test
+	$(TEST)
+
 clean:
 	rm -rf $(TARGET_DIR)
 

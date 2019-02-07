@@ -175,8 +175,8 @@ unsigned int memtest_sub(unsigned int start, unsigned int end){
     unsigned int pat0 = 0xaa55aa55;
     unsigned int pat1 = 0x55aa55aa;
     
-    for(i = start; i <= end; i += 4){
-        p = (unsigned int *)i;
+    for(i = start; i <= end; i += 0x100){  //4KBずつチェック
+        p = (unsigned int *)(i + 0xffc); //4KBの下位4byteを見る
         
         //戻せるように今の値を覚えておく
         old = *p;

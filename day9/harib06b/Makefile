@@ -79,7 +79,7 @@ $(OSL): $(OSL_SRC)
 	$(CC) $(CFLAGS) -o $(addprefix $(TMP_DIR)/, $(notdir $(@F:.s=.o))) -T $(OSL_LS) -c -g -Wa,-a,-ad $(OSL_SRC) > $(addprefix $(LST_DIR)/, $(notdir $(@F:.bin=.lst)))
 
 run: all
-	$(QEMU) -m 32 -drive format=raw,file=$(IMG),if=floppy
+	$(QEMU) -m 32M -drive format=raw,file=$(IMG),if=floppy
 
 debug: all
 	$(QEMU) -drive format=raw,file=$(TARGET_IMG),if=floppy -gdb tcp::10000 -S

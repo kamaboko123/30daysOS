@@ -186,7 +186,7 @@ mts_loop:
     cmpl (%ebx), %esi # if(*p == pat1) goto mts_fin
     jne mts_fin
     movl %edx, (%ebx)
-    addl $0x1000, (%eax) # i += 0x1000 (4KB進める)
+    addl $0x1000, %eax # i += 0x1000 (4KB進める)
     cmpl 12+8(%esp), %eax # if (i <= end) goto mts_loop
     jbe mts_loop
     pop %ebx

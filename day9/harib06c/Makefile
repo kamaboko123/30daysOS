@@ -35,7 +35,7 @@ OSL = $(TARGET_DIR)/asmhead.bin
 
 #external lib
 STDLIBC_DIR = ../../tools/stdlibc
-STDLIBC = $(STDLIBC_DIR)/bin/stdlib.o
+STDLIBC = $(STDLIBC_DIR)/bin/stdlibc.o
 
 FONT_DIR = ../../tools/makefont
 FONT = $(FONT_DIR)/bin/hankaku.o

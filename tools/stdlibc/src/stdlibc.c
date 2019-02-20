@@ -1,6 +1,6 @@
 #include "stdlibc.h"
 
-void *_sprintf(char *s, char *format, ...){
+void _sprintf(char *s, char *format, ...){
     va_list args;
     
     char disp_digit;

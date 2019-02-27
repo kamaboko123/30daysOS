@@ -59,12 +59,13 @@ void HariMain(void){
     
     init_screen(buf_back, binfo->scrnx, binfo->scrny);
     sheet_slide(shtctl, sht_back, 0, 0);
-    sheet_updown(shtctl, sht_back, 0);
     
     init_mouse_cursor8(buf_mouse, 99);
     mx = (binfo->scrnx - 16) / 2;
     my = (binfo->scrny - 28 - 16) / 2;
     sheet_slide(shtctl, sht_mouse, mx, my);
+    
+    sheet_updown(shtctl, sht_back, 0);
     sheet_updown(shtctl, sht_mouse, 1);
     
     _sprintf(str, "(%d, %d)", mx, my);
@@ -73,7 +74,8 @@ void HariMain(void){
     _sprintf(str, "memory %dMB    free : %dKB", memtotal / (1024 * 1024), memman_total(memman) / 1024);
     putfonts8_asc(buf_back, binfo->scrnx, 0, 32, COL8_FFFFFF, str);
     
-    sheet_refresh(shtctl);
+    
+    sheet_refresh(shtctl, sht_back, 0, 0, binfo->scrnx, 48);
     
     for(;;){
         io_cli();
@@ -96,7 +98,7 @@ void HariMain(void){
                 boxfill8(buf_back, binfo->scrnx, COL8_008484, 0, 92, binfo->scrnx, 107);
                 putfonts8_asc(buf_back, binfo->scrnx, 0, 92, COL8_FFFFFF, str);
                 */
-                sheet_refresh(shtctl);
+                sheet_refresh(shtctl, sht_back, 16, 16, 32, 48);
             }
             //マウス
             else if(fifo8_status(&mousefifo) != 0){
@@ -116,6 +118,7 @@ void HariMain(void){
                     
                     boxfill8(buf_back, binfo->scrnx, COL8_008484, 32, 16, 320, 31);
                     putfonts8_asc(buf_back, binfo->scrnx, 32, 16, COL8_FFFFFF, str);
+                    sheet_refresh(shtctl, sht_back, 32, 16, 32 + 15 * 8, 32);
                     
                     //値の書き換え
                     mx += mdec.x;
@@ -131,6 +134,7 @@ void HariMain(void){
                     _sprintf(str, "(%3d, %3d)", mx, my);
                     boxfill8(buf_back, binfo->scrnx, COL8_008484, 0, 0, 79, 15);
                     putfonts8_asc(buf_back, binfo->scrnx, 0, 0, COL8_FFFFFF, str);
+                    sheet_refresh(shtctl, sht_back, 0, 0, 80, 16);
                     
                     //移動後の描画
                     sheet_slide(shtctl, sht_mouse, mx, my);

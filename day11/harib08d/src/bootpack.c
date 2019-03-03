@@ -71,6 +71,9 @@ void HariMain(void){
     sheet_slide(sht_mouse, mx, my);
     
     make_window8(buf_win, 160, 68, "window");
+    
+    putfonts8_asc(buf_win, 160, 24, 28, COL8_000000, "Welcome to");
+    putfonts8_asc(buf_win, 160, 24, 44, COL8_000000, " Haribote-OS!");
     sheet_slide(sht_win, 80, 72);
     
     sheet_updown(sht_back, 0);
@@ -140,7 +143,6 @@ void HariMain(void){
                     
                     //移動後の描画
                     sheet_slide(sht_mouse, mx, my);
-                    
                 }
             }
         }

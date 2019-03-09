@@ -7,7 +7,7 @@ void init_pit(void){
     io_out8(PIT_CNT0, 0x9c);
     io_out8(PIT_CNT0, 0x2e);
     
-    timerctl.count = 100;
+    timerctl.count = 0;
 }
 
 void inthandler20(int *esp){

@@ -73,7 +73,7 @@ void HariMain(void){
     my = (binfo->scrny - 28 - 16) / 2;
     sheet_slide(sht_mouse, mx, my);
     
-    make_window8(buf_win, 160, 68, "counter");
+    make_window8(buf_win, 160, 52, "counter");
     
     sheet_slide(sht_win, 80, 72);
     

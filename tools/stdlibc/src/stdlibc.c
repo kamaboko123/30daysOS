@@ -1,8 +1,9 @@
 #include "stdlibc.h"
 
-void _sprintf(char *s, char *format, ...){
+unsigned int _sprintf(char *s, char *format, ...){
     va_list args;
     
+    char *s_org = s;
     char disp_digit;
     int pad_flg;
     unsigned int conv_len;
@@ -90,6 +91,8 @@ next:
     *s = *format;
     
     va_end(args);
+    
+    return ((s - s_org) / sizeof(char));
 }
 
 unsigned int _to_dec_asc(char *buf, int n){

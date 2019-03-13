@@ -39,9 +39,12 @@ int main(){
 
 void test_sprintf(){
     char buf[64];
+    unsigned int len;
+    
     memset(buf, '\0', sizeof(buf));
     
-    _sprintf(buf, "abc : %d,%3d,%03d,%x,%2x,%02x,%X,%2X,%02X  |  %d,%4d,%04d", 10, 10, 10, 10, 10, 10, 10, 10, 10, -10, -10, -10);
+    len = _sprintf(buf, "abc : %d,%3d,%03d,%x,%2x,%02x,%X,%2X,%02X  |  %d,%4d,%04d", 10, 10, 10, 10, 10, 10, 10, 10, 10, -10, -10, -10);
+    CU_ASSERT(len == 50);
     CU_ASSERT_STRING_EQUAL(buf, "abc : 10, 10,010,a, a,0a,A, A,0A  |  -10, -10,-010");
 }
 

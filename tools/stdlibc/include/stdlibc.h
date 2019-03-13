@@ -7,7 +7,7 @@
 #define FALSE 0
 
 //stdlib.c
-void _sprintf(char *s, char *format, ...);
+unsigned int _sprintf(char *s, char *format, ...);
 unsigned int _to_dec_asc(char *buf, int n);
 unsigned int _to_hex_asc(char *buf, int n, int capital);
 unsigned int _ndigit(unsigned int n, unsigned int base);

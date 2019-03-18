@@ -44,9 +44,9 @@ unsigned int _sprintf(char *s, char *format, ...){
                 while(_isdigit(*format)) format++;
             }
             
-            if(*format == 'd'){
+            if(*format == 'd' || *format == 'u'){
                 data_int = va_arg(args, int);
-                if((data_int & 0x8000) != 0){
+                if(((data_int & 0x8000) != 0) && *format == 'd'){
                     
                     if(pad_char == ' '){
                         *tmp = '-';

@@ -52,7 +52,7 @@ void timer_settime(struct TIMER *timer, unsigned int timeout){
     
     //リストに要素がない場合
     if(timerctl.using == 1){
-        timerctl.timers[0] = timer;
+        timerctl.t0 = timer;
         timer->next  = 0;
         timerctl.next = timer->timeout;
         io_store_eflags(e);
@@ -60,9 +60,9 @@ void timer_settime(struct TIMER *timer, unsigned int timeout){
     }
     
     //先頭
-    t = timerctl.timers[0];
+    t = timerctl.t0;
     if(timer->timeout <= t->timeout){
-        timerctl.timers[0] = timer;
+        timerctl.t0 = timer;
         timer->next = t;
         timerctl.next = timer->timeout;
         io_store_eflags(e);
@@ -102,7 +102,7 @@ void inthandler20(int *esp){
     
     if(timerctl.next > timerctl.count) return;
     
-    timer = timerctl.timers[0];
+    timer = timerctl.t0;
     for(i = 0; i < timerctl.using; i++){
         //timersのタイマはすべて動作中のタイマなので、flagsは見なくていい
         if(timer->timeout > timerctl.count) break;
@@ -117,11 +117,11 @@ void inthandler20(int *esp){
     timerctl.using -= i;
     
     //リスト先頭を更新
-    timerctl.timers[0] = timer;
+    timerctl.t0 = timer;
     
     //残りの動作中のタイマがあればnextを更新
     if(timerctl.using > 0){
-        timerctl.next = timerctl.timers[0]->timeout;
+        timerctl.next = timerctl.t0->timeout;
     }
     else{
         timerctl.next = 0xffffffff;

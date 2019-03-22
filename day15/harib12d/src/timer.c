@@ -39,7 +39,7 @@ void timer_free(struct TIMER *timer){
     timer->flags = 0;
 }
 
-void timer_init(struct TIMER *timer, struct FIFO32 *fifo, unsigned char data){
+void timer_init(struct TIMER *timer, struct FIFO32 *fifo, int data){
     timer->fifo = fifo;
     timer->data = data;
 }

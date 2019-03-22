@@ -349,7 +349,7 @@ void task_b_main(struct SHEET *sht_back){
     
     timer_put = timer_alloc();
     timer_init(timer_put, &fifo, 1);
-    timer_settime(timer_put, 1);
+    //timer_settime(timer_put, 1);
     
     timer_1s = timer_alloc();
     timer_init(timer_1s, &fifo, 100);

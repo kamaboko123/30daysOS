@@ -62,9 +62,11 @@ void task_run(struct TASK *task, int priority){
         task->priority = priority;
     }
     
-    task->flags = 2; //動作中
-    taskctl->tasks[taskctl->running] = task; //動作中のタスクに加える
-    taskctl->running++;
+    if(task->flags != 2){
+        task->flags = 2; //動作中
+        taskctl->tasks[taskctl->running] = task; //動作中のタスクに加える
+        taskctl->running++;
+    }
 }
 
 void task_switch(void){
@@ -77,7 +79,7 @@ void task_switch(void){
     timer_settime(task_timer, task->priority);
     
     if(taskctl->running >= 2){
-        farjmp(0, taskctl->tasks[taskctl->now]->sel);
+        farjmp(0, task->sel);
     }
 }
 

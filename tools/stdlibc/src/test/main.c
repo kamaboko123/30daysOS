@@ -13,6 +13,7 @@ void test_atoi(void);
 void test_isdigit(void);
 void test_memcpy(void);
 void test_memset(void);
+void test_strcmp(void);
 
 int main(){
     CU_pSuite testSuite;
@@ -30,6 +31,7 @@ int main(){
     CU_add_test(testSuite, "test of _isdigit()", test_isdigit);
     CU_add_test(testSuite, "test of _memcpy()", test_memcpy);
     CU_add_test(testSuite, "test of _memset()", test_memset);
+    CU_add_test(testSuite, "test of _strcmp()", test_strcmp);
     
     CU_basic_run_tests();
     CU_cleanup_registry();
@@ -41,13 +43,14 @@ void test_sprintf(){
     char buf[128];
     unsigned int len;
     
-    char expected[] = "abc : 10, 10,010,a, a,0a,A, A,0A  |  -10, -10,-010  |  10,0010,4294967286,  4294967286";
+    char expected[] = "abc : 10, 10,010,a, a,0a,A, A,0A  |  -10, -10,-010  |  10,0010,4294967286";
     
     memset(buf, '\0', sizeof(buf));
     
-    len = _sprintf(buf, "abc : %d,%3d,%03d,%x,%2x,%02x,%X,%2X,%02X  |  %d,%4d,%04d  |  %u,%04u,%u,%12u", 10, 10, 10, 10, 10, 10, 10, 10, 10, -10, -10, -10, 10, 10, -10);
+    len = _sprintf(buf, "abc : %d,%3d,%03d,%x,%2x,%02x,%X,%2X,%02X  |  %d,%4d,%04d  |  %u,%04u,%u", 10, 10, 10, 10, 10, 10, 10, 10, 10, -10, -10, -10, 10, 10, -10);
     CU_ASSERT(len == sizeof(expected) - 1);
     CU_ASSERT_STRING_EQUAL(buf, expected);
+    //printf("%s\n", buf);
 }
 
 void test_to_dec_asc(){
@@ -140,4 +143,13 @@ void test_memset(){
     CU_ASSERT(_memset(buf, 'B', sizeof(buf)) == sizeof(buf));
     
     CU_ASSERT_NSTRING_EQUAL(buf, "BBBBBBBB", sizeof(buf));
+}
+
+void test_strcmp(){
+    CU_ASSERT(_strcmp("abc", "abc") == 0);
+    CU_ASSERT(_strcmp("abc", "abb") == 1);
+    CU_ASSERT(_strcmp("abc", "abd") == -1);
+    
+    CU_ASSERT(_strcmp("abcde", "abc") == 'd');
+    CU_ASSERT(_strcmp("abc", "abcd") == -'d');
 }

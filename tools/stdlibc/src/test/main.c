@@ -146,10 +146,20 @@ void test_memset(){
 }
 
 void test_strcmp(){
+    //strcmp
     CU_ASSERT(_strcmp("abc", "abc") == 0);
     CU_ASSERT(_strcmp("abc", "abb") == 1);
     CU_ASSERT(_strcmp("abc", "abd") == -1);
     
     CU_ASSERT(_strcmp("abcde", "abc") == 'd');
     CU_ASSERT(_strcmp("abc", "abcd") == -'d');
+    
+    //strncmp
+    CU_ASSERT(_strncmp("abc", "abc", 3) == 0);
+    CU_ASSERT(_strncmp("abc", "abd", 2) == 0);
+    CU_ASSERT(_strncmp("abc", "abb", 3) == 1);
+    CU_ASSERT(_strncmp("abc", "abd", 3) == -1);
+    
+    CU_ASSERT(_strncmp("abcde", "abc", 4) == 'd');
+    CU_ASSERT(_strncmp("abc", "abcd", 4) == -'d');
 }

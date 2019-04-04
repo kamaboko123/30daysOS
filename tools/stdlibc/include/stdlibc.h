@@ -18,5 +18,6 @@ int _isdigit(char c);
 char *_memcpy(char *buf1, char *buf2, int n);
 int _memset(char *buf, char byte, int n);
 int _strcmp(char *s1, char *s2);
+int _strncmp(char *s1, char *s2, unsigned int n);
 
 #endif

@@ -83,7 +83,7 @@ $(OSL): $(OSL_SRC)
 	$(CC) $(CFLAGS) -o $(addprefix $(TMP_DIR)/, $(notdir $(@F:.s=.o))) -T $(OSL_LS) -c -g -Wa,-a,-ad $(OSL_SRC) > $(addprefix $(LST_DIR)/, $(notdir $(@F:.bin=.lst)))
 
 $(HLT_APP): src/hlt_app/hlt.s
-	gcc -c -nostdlib -o $(TARGET_DIR)/hlt.o src/hlt_app/hlt.s
+	gcc -c -nostdlib -m32 -o $(TARGET_DIR)/hlt.o src/hlt_app/hlt.s
 	objcopy -O binary $(TARGET_DIR)/hlt.o $(HLT_APP)
 
 run: all

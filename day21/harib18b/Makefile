@@ -101,8 +101,7 @@ $(APP2): $(APP2_SRC)
 $(APP3): src/app/a.c src/app/a_asm.s
 	$(CC) -c $(CFLAGS) -o $(TARGET_DIR)/a.o src/app/a.c
 	$(CC) -c $(CFLAGS) -o $(TARGET_DIR)/a_asm.o src/app/a_asm.s
-	ld $(LFLAGS) -o $(APP3).obj -e __start  $(TARGET_DIR)/a.o $(TARGET_DIR)/a_asm.o
-	objcopy -O binary $@.obj $@
+	ld $(LFLAGS) -o $(APP3) --oformat=binary -e __start $(TARGET_DIR)/a_asm.o $(TARGET_DIR)/a.o
 
 run: all
 	$(QEMU) -m 32M -drive format=raw,file=$(IMG),if=floppy

@@ -47,7 +47,7 @@ x86エミュレータ : QEMU2.5.0
 3日目はasmheadを実装していきます。  
 (IPLから呼ばれて、OSイメージのメモリ上の展開や、プロテクトモードへの移行を行うプログラム。アセンブラで書く)  
 まだアセンブラに全く慣れていない時期にもかかわらず、naskからGasを変換しながら書いていったため、自分一人では絶対にできなかったと思います。  
-上記の記事で、nask/NASMと、Gasの差分を知ったり、リンカスクリプトの存在を知ったり、この3日目でのちに繋がっていく、結構な知識のベースを獲得できたとおもます。  
+上記の記事で、nask/NASMと、Gasの差分を知ったり、リンカスクリプトの存在を知ったり、この3日目でのちに繋がっていく、結構な知識のベースを獲得できたと思います。  
 
 [30日でできる!OS自作入門 まとめ | サラリーマンがハッカーを真剣に目指す](http://bttb.s1.valueserver.jp/wordpress/blog/2018/04/17/makeos/)  
 各日数ごとに重要なポイントがまとまっています。  
@@ -61,7 +61,7 @@ gccで.hrb形式のバイナリを生成するための、リンカスクリプ�
 [0から作るOS開発 「OS自作入門」](http://softwaretechnique.jp/OS_Development/index.html)  
 アセンブラを書く上で、Tipsの[IA32(x86) 汎用命令一覧](http://softwaretechnique.jp/OS_Development/Tips/IA32_instructions.html)はたくさん参考にしました。  
 
-[GAS_基本文法 CapmNetwork](http://capm-network.com/?tag=GAS_%E5%9F%BA%E6%9C%AC%E6%96%87%E6%B3%95)
+[GAS_基本文法 CapmNetwork](http://capm-network.com/?tag=GAS_%E5%9F%BA%E6%9C%AC%E6%96%87%E6%B3%95)  
 アセンブラ全くの初心者だったため、最初にGasの文法を知るために参考にしました。  
 
 [Linux のアセンブラー: GAS と NASM を比較する - IBM](https://www.ibm.com/developerworks/jp/linux/library/l-gas-nasm.html)  

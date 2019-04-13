@@ -56,13 +56,13 @@
 
     lgdt (GDTR0) #暫定GDT
     movl %cr0, %eax
-    andl $0x7ffffff, %eax
+    andl $0x7fffffff, %eax
     orl $0x00000001, %eax
     movl %eax, %cr0
     jmp pipelineflush
 pipelineflush:
     movw $1*8, %ax
-    movw %ax, %dx
+    movw %ax, %ds
     movw %ax, %es
     movw %ax, %fs
     movw %ax, %gs

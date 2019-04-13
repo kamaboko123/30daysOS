@@ -37,7 +37,7 @@ x86エミュレータ : QEMU2.5.0
 図が多く、x86アーキテクチャを初めて学ぶ私にも理解しやすかったです。  
 ただ古い本であるせいか、ソースコードについては、おそらくMS-DOS？をターゲットに書かれているようで、ほとんど読み飛ばしました。  
 30日OSの本は非常に良書ではあるのですが、x86の詳細な機能については解説が充実しているとは言えません。  
-30日OSの本を進めている間に、割り込み, IDT, GDT, TSSなどへの理解が不足していると感じたため、この本で補強しました。  
+30日OSの本を進めている間に、割り込み, IDT, GDT, TSSなどへの理解が不足していると感じたて、この本で補強しました。  
 補強のつもりで買ったのですが、想像以上に面白い本で、はりぼてOSの開発が読み終わったら、しっかり読み込みたいと思います。  
 
 
@@ -55,10 +55,10 @@ x86エミュレータ : QEMU2.5.0
 ここはなかなかイメージが掴めず、理解まで時間がかかったのですが、  
 上記のブログの[記事](http://bttb.s1.valueserver.jp/wordpress/blog/2017/12/06/makeos-3-2/)ではメモリ上のデータ配置が図解されており、非常にわかりやすかったです。  
 
-[『30日でできる！OS自作入門』のメモ] (https://vanya.jp.net/os/haribote.html)  
+[『30日でできる！OS自作入門』のメモ](https://vanya.jp.net/os/haribote.html)  
 gccで.hrb形式のバイナリを生成するための、リンカスクリプトはこちらで公開されているものを使用しました。  
 
-[0から作るOS開発 「OS自作入門」] (http://softwaretechnique.jp/OS_Development/index.html)  
+[0から作るOS開発 「OS自作入門」](http://softwaretechnique.jp/OS_Development/index.html)  
 アセンブラを書く上で、Tipsの[IA32(x86) 汎用命令一覧](http://softwaretechnique.jp/OS_Development/Tips/IA32_instructions.html)はたくさん参考にしました。  
 
 [GAS_基本文法 CapmNetwork](http://capm-network.com/?tag=GAS_%E5%9F%BA%E6%9C%AC%E6%96%87%E6%B3%95)

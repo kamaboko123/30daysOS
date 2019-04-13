@@ -126,13 +126,13 @@ keystatus:
     lgdt (GDTR0) #暫定GDT
     #ここからプロテクトモードに入るための処理
     movl %cr0, %eax
-    andl $0x7ffffff, %eax
+    andl $0x7fffffff, %eax
     orl $0x00000001, %eax
     movl %eax, %cr0 #ページングを使用しないプロテクトモード(CR0の最上位bitを0, 最下位bitを1にする)
     jmp pipelineflush
 pipelineflush:
     movw $1*8, %ax
-    movw %ax, %dx
+    movw %ax, %ds
     movw %ax, %es
     movw %ax, %fs
     movw %ax, %gs

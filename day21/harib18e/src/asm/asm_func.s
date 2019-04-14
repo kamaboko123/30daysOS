@@ -189,7 +189,7 @@ kill: #アプリ異常終了
     movl (0xfe4), %esp #start_appのときのespに戻す
     sti
     popa
-    ret
+    ret #ここはiretじゃなくてretで良いらしい(P435)
 
 
 #void asm_inthandler21(void)

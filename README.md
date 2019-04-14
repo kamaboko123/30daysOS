@@ -19,7 +19,7 @@
 見つけた方はissueに書いていただくか、こっそり教えていただけると幸いです。  
 
 ## 開発環境
-マシン : VM on ESXi(Core i7-8700K, RAM 8GB) 
+マシン : VM on ESXi(Core i7-8700K, RAM 8GB)  
 OS : Ubuntu Server 16.04.5(amd64)  
 Cコンパイラ : gcc 5.4.0  
 アセンブラ : Gas(GNU assembler) 2.26.1  

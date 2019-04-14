@@ -48,28 +48,26 @@ IMG = $(TARGET_DIR)/haribote.img
 
 #application
 APP_TARGET_DIR = $(TARGET_DIR)/app/dist
+APP_SRC_DIR = src/app
+APP_SRC = $(shell find $(APP_SRC_DIR) -type f)
+APP_DIRS = $(shell find $(APP_SRC_DIR) -maxdepth 1 -type d -not -path $(APP_SRC_DIR))
 
-APPS = $(APP1) $(APP2) $(APP3) $(APP4) $(APP5) $(APP6)
 
-APP1_SRC_DIR = src/app/hello
-APP1 = $(APP_TARGET_DIR)/hello
+define make_app
+	cd $1; make;
 
-APP2_SRC_DIR = src/app/hello2
-APP2 = $(APP_TARGET_DIR)/hello2
+endef
 
-APP3_SRC_DIR = src/app/a
-APP3 = $(APP_TARGET_DIR)/a
+define copy_app
+	mcopy $1 -i $(IMG) ::
 
-APP4_SRC_DIR = src/app/hello3
-APP4 = $(APP_TARGET_DIR)/hello3
-
-APP5_SRC_DIR = src/app/crack1
-APP5 = $(APP_TARGET_DIR)/crack1
-
-APP6_SRC_DIR = src/app/crack2
-APP6 = $(APP_TARGET_DIR)/crack2
+endef
 
 all: $(IMG)
+
+apps : $(APP_SRC)
+	@echo [Application] build
+	$(foreach x, $(APP_DIRS), $(call make_app, $(x)))
 
 $(FONT) : $(shell find $(FONT_DIR) -type f -not -name '$(EXCLUDE_EXLIB_DEP_FILE)' -not -name '$(notdir $(FONT))')
 	@echo [Dependent Files] FONT:  $^
@@ -79,16 +77,11 @@ $(STDLIBC) : $(shell find $(STDLIBC_DIR) -type f -not -name '$(EXCLUDE_EXLIB_DEP
 	@echo [Dependent Files] STDLIBC: $^
 	cd $(STDLIBC_DIR); make all
 
-$(IMG): $(IPL) $(OSL) $(OS) $(APPS)
+$(IMG): $(IPL) $(OSL) $(OS) apps
 	cat $(OSL) $(OS) > $(SYSTEM_IMG)
 	mformat -f 1440 -B $(IPL) -C -i $(IMG) ::
 	mcopy $(SYSTEM_IMG) -i $(IMG) ::
-	mcopy $(APP1) -i $(IMG) ::
-	mcopy $(APP2) -i $(IMG) ::
-	mcopy $(APP3) -i $(IMG) ::
-	mcopy $(APP4) -i $(IMG) ::
-	mcopy $(APP5) -i $(IMG) ::
-	mcopy $(APP6) -i $(IMG) ::
+	$(foreach x, $(shell find $(APP_TARGET_DIR) -type f), $(call copy_app, $(x)))
 	mcopy Makefile -i $(IMG) ::
 
 $(OS): $(addprefix $(TARGET_DIR)/, $(notdir $(OS_SRC:.c=.o))) $(STDLIBC) $(ASMLIB) $(FONT)
@@ -109,26 +102,6 @@ $(IPL): $(IPL_SRC)
 $(OSL): $(OSL_SRC)
 	$(CC) $(CFLAGS) -o $@ -T $(OSL_LS) $(OSL_SRC)
 	$(CC) $(CFLAGS) -o $(addprefix $(TMP_DIR)/, $(notdir $(@F:.s=.o))) -T $(OSL_LS) -c -g -Wa,-a,-ad $(OSL_SRC) > $(addprefix $(LST_DIR)/, $(notdir $(@F:.bin=.lst)))
-
-
-$(APP1): $(APP1_SRC_DIR)
-	cd $(APP1_SRC_DIR); make
-
-$(APP2): $(APP2_SRC)
-	cd $(APP2_SRC_DIR); make
-
-$(APP3): $(APP3_SRC_DIR)
-	cd $(APP3_SRC_DIR); make
-
-$(APP4): $(APP4_SRC_DIR)
-	cd $(APP4_SRC_DIR); make
-
-$(APP5): $(APP5_SRC_DIR)
-	cd $(APP5_SRC_DIR); make
-
-$(APP6): $(APP6_SRC_DIR)
-	cd $(APP6_SRC_DIR); make
-
 
 run: all
 	$(QEMU) -m 32M -drive format=raw,file=$(IMG),if=floppy

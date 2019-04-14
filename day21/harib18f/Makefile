@@ -66,8 +66,8 @@ APP4 = $(APP_TARGET_DIR)/hello3
 APP5_SRC_DIR = src/app/crack1
 APP5 = $(APP_TARGET_DIR)/crack1
 
-APP5_SRC_DIR = src/app/crack2
-APP5 = $(APP_TARGET_DIR)/crack2
+APP6_SRC_DIR = src/app/crack2
+APP6 = $(APP_TARGET_DIR)/crack2
 
 all: $(IMG)
 
@@ -88,6 +88,7 @@ $(IMG): $(IPL) $(OSL) $(OS) $(APPS)
 	mcopy $(APP3) -i $(IMG) ::
 	mcopy $(APP4) -i $(IMG) ::
 	mcopy $(APP5) -i $(IMG) ::
+	mcopy $(APP6) -i $(IMG) ::
 	mcopy Makefile -i $(IMG) ::
 
 $(OS): $(addprefix $(TARGET_DIR)/, $(notdir $(OS_SRC:.c=.o))) $(STDLIBC) $(ASMLIB) $(FONT)
@@ -125,6 +126,8 @@ $(APP4): $(APP4_SRC_DIR)
 $(APP5): $(APP5_SRC_DIR)
 	cd $(APP5_SRC_DIR); make
 
+$(APP6): $(APP6_SRC_DIR)
+	cd $(APP6_SRC_DIR); make
 
 
 run: all

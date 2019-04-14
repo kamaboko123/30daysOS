@@ -142,18 +142,17 @@ asm_inthandler21:
     
     #osが動いてるときに割り込まれたので今までどおり
     movl %esp, %eax
-    push %ss
-    push %eax
+    push %ss #割り込まれたときのssを保存(これいる？)
+    push %eax #割り込まれたときのespを保存
     movw %ss, %ax
     movw %ax, %ds
     movw %ax, %es
     call inthandler21
     add $8, %esp
     popa
-    popw %ds
-    popw %es
+    pop %ds
+    pop %es
     iret
-
 from_app21:
     movl $1 * 8, %eax
     movw %ax, %ds #DSをOS用に
@@ -173,7 +172,6 @@ from_app21:
     pop %ds
     pop %es
     iret
-    
 
 #void asm_inthandler2c(void)
 asm_inthandler2c:
@@ -182,20 +180,20 @@ asm_inthandler2c:
     pusha
     movw %ss, %ax
     cmpw $1 * 8, %ax
-    jne from_app2c
+    #jne from_app2c
     
     #osが動いてるときに割り込まれたので今までどおり
     movl %esp, %eax
-    push %ss
-    push %eax
+    push %ss #割り込まれたときのssを保存(これいる？)
+    push %eax #割り込まれたときのespを保存
     movw %ss, %ax
     movw %ax, %ds
     movw %ax, %es
     call inthandler2c
     add $8, %esp
     popa
-    popw %ds
-    popw %es
+    pop %ds
+    pop %es
     iret
 
 from_app2c:
@@ -219,11 +217,10 @@ from_app2c:
     iret
 
 
-
 #void asm_inthandler27(void)
 asm_inthandler27:
-    pushw %es
-    pushw %ds
+    push %es
+    push %ds
     pusha
     movw %ss, %ax
     cmpw $1 * 8, %ax
@@ -231,17 +228,18 @@ asm_inthandler27:
     
     #osが動いてるときに割り込まれたので今までどおり
     movl %esp, %eax
-    push %ss
-    push %eax
+    push %ss #割り込まれたときのssを保存(これいる？)
+    push %eax #割り込まれたときのespを保存
     movw %ss, %ax
     movw %ax, %ds
     movw %ax, %es
     call inthandler27
     add $8, %esp
     popa
-    popw %ds
-    popw %es
+    pop %ds
+    pop %es
     iret
+
 from_app27:
     movl $1 * 8, %eax
     movw %ax, %ds #DSをOS用に
@@ -261,7 +259,6 @@ from_app27:
     pop %ds
     pop %es
     iret
- 
 
 #void asm_inthandler20(void)
 asm_inthandler20:
@@ -271,6 +268,7 @@ asm_inthandler20:
     movw %ss, %ax
     cmpw $1 * 8, %ax
     jne from_app20
+    
     #osが動いてるときに割り込まれたので今までどおり
     movl %esp, %eax
     push %ss #割り込まれたときのssを保存
@@ -281,8 +279,8 @@ asm_inthandler20:
     call inthandler20
     add $8, %esp
     popa
-    popw %ds
-    popw %es
+    pop %ds
+    pop %es
     iret
 
 from_app20:
@@ -304,7 +302,6 @@ from_app20:
     pop %ds
     pop %es
     iret
-    
 
 #unsigned int memtest_sub(unsigned int start, unsigned int end)
 memtest_sub:
@@ -429,8 +426,8 @@ start_app:
     movw %bx, %gs
     movl %edx, %esp
     sti
-    pushl %ecx #farcallに使う(cs)
-    pushl %eax #farcallに使う(eip)
+    push %ecx #farcallに使う(cs)
+    push %eax #farcallに使う(eip)
     lcall *(%esp)
     
     #OS用に戻す

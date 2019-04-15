@@ -133,8 +133,8 @@ store_cr0:
 #void asm_inthandler0d(void)
 asm_inthandler0d:
     sti
-    pushw %es
-    pushw %ds
+    push %es
+    push %ds
     pusha
     movl %esp, %eax
     push %eax #espを記録しておく
@@ -154,8 +154,8 @@ asm_inthandler0d:
 
 #void asm_inthandler21(void)
 asm_inthandler21:
-    pushw %es
-    pushw %ds
+    push %es
+    push %ds
     pusha
     movl %esp, %eax
     pushl %eax
@@ -165,14 +165,14 @@ asm_inthandler21:
     call inthandler21
     popl %eax
     popa
-    popw %ds
-    popw %es
+    pop %ds
+    pop %es
     iret
 
 #void asm_inthandler2c(void)
 asm_inthandler2c:
-    pushw %es
-    pushw %ds
+    push %es
+    push %ds
     pusha
     mov %esp, %eax
     push %eax
@@ -182,15 +182,15 @@ asm_inthandler2c:
     call inthandler2c
     popl %eax
     popa
-    popw %ds
-    popw %es
+    pop %ds
+    pop %es
     iret
 
 
 #void asm_inthandler27(void)
 asm_inthandler27:
-    pushw %es
-    pushw %ds
+    push %es
+    push %ds
     pusha
     mov %esp, %eax
     push %eax
@@ -200,15 +200,15 @@ asm_inthandler27:
     call inthandler27
     popl %eax
     popa
-    popw %ds
-    popw %es
+    pop %ds
+    pop %es
     iret
 
 
 #void asm_inthandler20(void)
 asm_inthandler20:
-    pushw %es
-    pushw %ds
+    push %es
+    push %ds
     pusha
     mov %esp, %eax
     push %eax
@@ -218,8 +218,8 @@ asm_inthandler20:
     call inthandler20
     popl %eax
     popa
-    popw %ds
-    popw %es
+    pop %ds
+    pop %es
     iret
 
 #unsigned int memtest_sub(unsigned int start, unsigned int end)

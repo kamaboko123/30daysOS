@@ -17,9 +17,11 @@ api_putchar:
 .global api_putstr0
 #void api_putstr0(char *s)
 api_putstr0:
+    push %ebx
     mov $2, %edx
     mov 8(%esp), %ebx
     int $0x40
+    pop %ebx
     ret
 
 #void api_end(void)

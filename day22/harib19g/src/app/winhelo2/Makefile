@@ -1,7 +1,7 @@
 #Makefile
 
 CC = gcc
-CFLAGS = -nostdlib -m32 -fno-builtin -O0
+CFLAGS = -nostdlib -m32 -fno-builtin -O0 -fno-common
 INCLUDE = -I ../lib/include
 
 LFLAGS = -m elf_i386

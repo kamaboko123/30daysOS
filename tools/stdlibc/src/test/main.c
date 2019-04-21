@@ -14,6 +14,7 @@ void test_isdigit(void);
 void test_memcpy(void);
 void test_memset(void);
 void test_strcmp(void);
+void test_rand(void);
 
 int main(){
     CU_pSuite testSuite;
@@ -32,6 +33,7 @@ int main(){
     CU_add_test(testSuite, "test of _memcpy()", test_memcpy);
     CU_add_test(testSuite, "test of _memset()", test_memset);
     CU_add_test(testSuite, "test of _strcmp()", test_strcmp);
+    CU_add_test(testSuite, "test of _rand()", test_rand);
     
     CU_basic_run_tests();
     CU_cleanup_registry();
@@ -162,4 +164,11 @@ void test_strcmp(){
     
     CU_ASSERT(_strncmp("abcde", "abc", 4) == 'd');
     CU_ASSERT(_strncmp("abc", "abcd", 4) == -'d');
+}
+
+void test_rand(){
+    _rand_seed(9);
+    for(int i = 0; i < 50; i++){
+        printf("%u\n", _rand());
+    }
 }

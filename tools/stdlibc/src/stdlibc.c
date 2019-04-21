@@ -1,5 +1,7 @@
 #include "stdlibc.h"
 
+unsigned int __last_rand = RAND_INIT;
+
 unsigned int _sprintf(char *s, char *format, ...){
     va_list args;
     
@@ -217,3 +219,17 @@ int _strncmp(char *s1, char *s2, unsigned int n){
     
     return(*s1 - *s2);
 }
+
+void _rand_seed(unsigned int x){
+    __last_rand = x;
+}
+
+unsigned int _rand(){
+    //線形合同法による乱数生成
+    //ポケモン3,4世代と同じ値
+    static unsigned int a = 0x41c64e6d;
+    static unsigned int b = 0x6073;
+    __last_rand = (a * __last_rand + b) % (_UINT_MAX / 2);
+    return __last_rand;
+}
+

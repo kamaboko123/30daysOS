@@ -6,7 +6,11 @@
 #define TRUE 1
 #define FALSE 0
 
+#define RAND_INIT 99
+#define _UINT_MAX 4294967295
+
 //stdlib.c
+extern unsigned int __last_rand;
 unsigned int _sprintf(char *s, char *format, ...);
 unsigned int _to_dec_asc(char *buf, int n);
 unsigned int _to_hex_asc(char *buf, int n, int capital);
@@ -19,5 +23,8 @@ char *_memcpy(char *buf1, char *buf2, int n);
 int _memset(char *buf, char byte, int n);
 int _strcmp(char *s1, char *s2);
 int _strncmp(char *s1, char *s2, unsigned int n);
+
+void _rand_seed(unsigned int x);
+unsigned int _rand();
 
 #endif

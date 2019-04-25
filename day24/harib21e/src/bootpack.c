@@ -261,26 +261,6 @@ void HariMain(void){
                     }
                     key_win = shtctl->sheets[j];
                     cursor_c = keywin_on(key_win, sht_win, cursor_c);
-                    /*
-                    if(key_win == sht_win){
-                        key_to = 1;
-                        make_wtitle8(buf_win, sht_win->bxsize, "task_a", 0);
-                        make_wtitle8(buf_cons, sht_cons->bxsize, "console", 1);
-                        cursor_c = -1;
-                        boxfill8(sht_win->buf, sht_win->bxsize, COL8_FFFFFF, cursor_x, 28, cursor_x + 7, 43);
-                        fifo32_put(&task_cons->fifo, 2); //console
-                    }
-                    else{
-                        key_to = 0;
-                        make_wtitle8(buf_win, sht_win->bxsize, "task_a", 1);
-                        make_wtitle8(buf_cons, sht_cons->bxsize, "console", 0);
-                        cursor_c = COL8_000000;
-                        fifo32_put(&task_cons->fifo, 3); //console
-                    }
-                    
-                    sheet_refresh(sht_win, 0, 0, sht_win->bxsize, 21);
-                    sheet_refresh(sht_cons, 0, 0, sht_cons->bxsize, 21);
-                    */
                 }
                 
                 if(i == 256 + 0x1c){ //enter
@@ -455,7 +435,7 @@ int keywin_off(struct SHEET *key_win, struct SHEET *sht_win, int cur_c, int cur_
     //key_winがtask_aだった場合
     if(key_win == sht_win){
         cur_c = -1; //カーソルを消す
-        boxfill8(sht_win->buf, sht_win->bxsize, COL8_FFFFFF, cur_c, 28, cur_x + 7, 43);
+        boxfill8(sht_win->buf, sht_win->bxsize, COL8_FFFFFF, cur_x, 28, cur_x + 7, 43);
     }
     else{
         //task_a以外で、カーソルのon/off制御が必要な場合

@@ -2,7 +2,7 @@
 
 void fifo8_init(struct FIFO8 *fifo, int size, unsigned char *buf){
     fifo->size = size;
-    fifo->buf;
+    fifo->buf = buf;
     fifo->free = size;
     fifo->flags = 0;
     fifo->p = 0;

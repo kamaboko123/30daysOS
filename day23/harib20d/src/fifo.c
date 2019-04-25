@@ -2,7 +2,7 @@
 
 void fifo8_init(struct FIFO8 *fifo, int size, unsigned char *buf){
     fifo->size = size;
-    fifo->buf;
+    fifo->buf = buf;
     fifo->free = size;
     fifo->flags = 0;
     fifo->p = 0;
@@ -46,7 +46,7 @@ int fifo8_status(struct FIFO8 *fifo){
 
 void fifo32_init(struct FIFO32 *fifo, int size, int *buf, struct TASK *task){
     fifo->size = size;
-    fifo->buf;
+    fifo->buf = buf;
     fifo->free = size;
     fifo->flags = 0;
     fifo->p = 0;

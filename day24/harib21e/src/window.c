@@ -80,7 +80,7 @@ void make_textbox8(struct SHEET *sht, int x0, int y0, int sx, int sy, int c){
     boxfill8(sht->buf, sht->bxsize, c, x0 - 1, y0 - 1, x1 + 0, y1 + 0);
 }
 
-void change_wintitle8(struct SHEET *sht, char act){
+void change_wtitle8(struct SHEET *sht, char act){
     int x, y;
     int xsize = sht->bxsize;
     
@@ -108,7 +108,7 @@ void change_wintitle8(struct SHEET *sht, char act){
         for(x = 3; x <= xsize - 4; x++){
             c = buf[y * xsize + x];
             //タイトルバーをアクティブにする
-            if(c == tc_old <= xsize - 22){
+            if(c == tc_old && x <= xsize - 22){
                 //中
                 c = tc_new;
             }

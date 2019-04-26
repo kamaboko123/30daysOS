@@ -430,7 +430,7 @@ void HariMain(void){
 }
 
 int keywin_off(struct SHEET *key_win, struct SHEET *sht_win, int cur_c, int cur_x){
-    change_wintitle8(key_win, 0);
+    change_wtitle8(key_win, 0);
     
     //key_winがtask_aだった場合
     if(key_win == sht_win){
@@ -447,7 +447,7 @@ int keywin_off(struct SHEET *key_win, struct SHEET *sht_win, int cur_c, int cur_
 }
 
 int keywin_on(struct SHEET *key_win, struct SHEET *sht_win, int cur_c){
-    change_wintitle8(key_win, 1);
+    change_wtitle8(key_win, 1);
     //key_winがtask_aだった場合
     if(key_win == sht_win){
         cur_c = COL8_000000;

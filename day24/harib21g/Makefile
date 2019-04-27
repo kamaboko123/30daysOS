@@ -1,7 +1,8 @@
 #Makefile
 
 CC = gcc
-CFLAGS = -nostdlib -m32 -fno-builtin -O0 -Wall
+CWARN=-Wall -Wno-pointer-sign -Wno-unused-variable
+CFLAGS = -nostdlib -m32 -fno-builtin -O0 $(CWARN)
 INCLUDE = -I include -I ../../tools/stdlibc/include
 
 LD = ld

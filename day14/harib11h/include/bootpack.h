@@ -271,7 +271,7 @@ struct TIMER{
     unsigned int timeout;
     unsigned int flags;
     struct FIFO32 *fifo;
-    unsigned char data;
+    int data;
 };
 
 struct TIMERCTL{

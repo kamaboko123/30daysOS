@@ -1,7 +1,7 @@
 #Makefile
 
 CC = gcc
-CFLAGS = -nostdlib -m32 -fno-builtin -O0
+CFLAGS = -nostdlib -m32 -fno-builtin -O0 -Wall
 INCLUDE = -I include -I ../../tools/stdlibc/include
 
 LD = ld

@@ -16,9 +16,6 @@ void HariMain(void){
     timer = api_alloctimer();
     api_inittimer(timer, 128);
     
-    _sprintf(s, "0x%X", timer);
-    api_putstrwin(win, 28, 27, 0, 11, s);
-    
     for(;;){
         _sprintf(s, "%5d:%02d:%02d", hou, min, sec);
         api_boxfillwin(win, 28, 27, 115, 41, 7);

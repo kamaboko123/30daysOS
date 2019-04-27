@@ -86,7 +86,7 @@ void task_run(struct TASK *task, int level, int priority){
     }
     
     //動作中のレベル変更
-    if(task->flags == 2 & task->level != level){
+    if(task->flags == 2 && task->level != level){
         task_remove(task); //これによりflagsが1になる(下のifも真になる)
     }
     

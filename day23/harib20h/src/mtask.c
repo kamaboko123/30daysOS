@@ -191,3 +191,7 @@ void task_switchsub(void){
     taskctl->now_lv = i;
     taskctl->lv_change = 0;
 }
+void task_idle(void){
+    for(;;) io_hlt();
+}
+

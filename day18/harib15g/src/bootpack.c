@@ -595,6 +595,3 @@ int cons_newline(int cursor_y, struct SHEET *sheet){
     return cursor_y;
 }
 
-void task_idle(void){
-    for(;;) io_hlt;
-}

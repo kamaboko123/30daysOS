@@ -467,6 +467,3 @@ void console_task(struct SHEET *sheet){
     }
 }
 
-void task_idle(void){
-    for(;;) io_hlt;
-}

@@ -353,6 +353,3 @@ void task_b_main(struct SHEET *sht_back){
     }
 }
 
-void task_idle(void){
-    for(;;) io_hlt;
-}

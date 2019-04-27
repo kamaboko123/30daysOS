@@ -366,6 +366,3 @@ void HariMain(void){
     }
 }
 
-void task_idle(void){
-    for(;;) io_hlt;
-}

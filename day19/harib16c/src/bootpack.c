@@ -714,6 +714,3 @@ void file_loadfile(int clustono, int size, char *buf, int *fat, char *img){
     }
 }
 
-void task_idle(void){
-    for(;;) io_hlt;
-}

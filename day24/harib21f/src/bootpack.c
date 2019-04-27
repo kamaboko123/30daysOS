@@ -466,6 +466,3 @@ int keywin_on(struct SHEET *key_win, struct SHEET *sht_win, int cur_c){
     return cur_c;
 }
 
-void task_idle(void){
-    for(;;) io_hlt;
-}

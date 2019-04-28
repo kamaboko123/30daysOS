@@ -46,7 +46,7 @@ void set_segmdesc(struct SEGMENT_DESCRIPTOR *sd, unsigned int limit, int base, i
     
     //下位8bit
     //limit_highの上位4bitはarの拡張アクセス権
-    sd->limit_high = (((limit >> 16) & 0x0f) | (ar >> 8) & 0xf0);
+    sd->limit_high = ((limit >> 16) & 0x0f) | ((ar >> 8) & 0xf0);
     sd->base_high = (base >> 24) & 0xff;
 }
 

@@ -265,7 +265,7 @@ void HariMain(void){
                 
                 if(i == 256 + 0x1c){ //enter
                     if(key_win != sht_win){
-                        fifo32_put(&task_cons->fifo, 10 + 256);
+                        fifo32_put(&key_win->task->fifo, 10 + 256);
                     }
                 }
                 

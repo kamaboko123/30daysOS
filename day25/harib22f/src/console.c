@@ -297,7 +297,7 @@ int cmd_app(struct CONSOLE *cons, int *fat, char *cmdline){
             q = (char *) memman_alloc_4k(memman, segsiz);
             
             //データセグメントを覚えておく(システムコールされたときにアプリケーションのデータのアクセスするのに必要)
-            task->ds_base = q;
+            task->ds_base = (int)q;
             
             //0x60を足すのは、アプリのセグメントであるとあつかうため
             //コードセグメント

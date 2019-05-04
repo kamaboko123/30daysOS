@@ -406,7 +406,7 @@ void HariMain(void){
             else if(i >= 768 && i <= 1023){ //consoleの終了処理(consoleでexitすると送られてくる)
                 close_console(shtctl->sheets0 + (i - 768));
             }
-            else if(i >= 768 && i <= 1023){ //consoleの終了処理(consoleウインドウを持っていない場合)
+            else if(i >= 1024 && i <= 2023){ //consoleの終了処理(consoleウインドウを持っていない場合)
                 close_constask(taskctl->tasks0 + (i - 1024));
             }
         }

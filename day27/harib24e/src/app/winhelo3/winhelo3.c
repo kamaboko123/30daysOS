@@ -1,4 +1,4 @@
-#include "haribote.h"
+#include "apilib.h"
 
 void HariMain(void){
     char *buf;

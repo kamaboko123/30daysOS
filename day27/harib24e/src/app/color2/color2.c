@@ -1,4 +1,4 @@
-#include "haribote.h"
+#include "apilib.h"
 #include "stdlibc.h"
 
 unsigned char rgb2pal(int r, int g, int b, int x, int y);

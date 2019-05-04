@@ -18,5 +18,6 @@ void HariMain(void){
         api_point(win, x, y, 3); //黄
     }
     
+    for(;;) if(api_getkey(1) == 0x0a) break;
     api_end();
 }

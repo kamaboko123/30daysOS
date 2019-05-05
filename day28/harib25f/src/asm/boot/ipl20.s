@@ -22,7 +22,7 @@ jmp entry
 .ascii  "FAT12   " # name of format(8byte)
 .skip   18,0 # padding?
 
-.set CYLS, 10
+.set CYLS, 20
 .set _CYLS, 0xff0
 
 entry:

@@ -28,9 +28,9 @@ SYSTEM_IMG = bin/haribote.bin
 ASMLIB_SRC = src/asm/asm_func.s
 ASMLIB = $(TARGET_DIR)/asm_func.o
 
-IPL_SRC = src/asm/boot/ipl10.s
+IPL_SRC = src/asm/boot/ipl20.s
 IPL_LS = scripts/ipl.lds
-IPL = $(TARGET_DIR)/ipl10.bin
+IPL = $(TARGET_DIR)/ipl20.bin
 
 OSL_SRC = src/asm/boot/asmhead.s
 OSL_LS = scripts/asmhead.lds

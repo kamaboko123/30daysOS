@@ -115,7 +115,7 @@ Gasでのfar jmp命令の書き方がよく分からず、ページ下部のNASM
 [2進数、8進数、10進数、16進数相互変換ツール - 単位変換](https://hogehoge.tk/tool/number.html)  
 手計算やってられないので活用しました。  
   
-[disassembler.io](https://onlinedisassembler.com/static/home/index.html)
+[disassembler.io](https://onlinedisassembler.com/static/home/index.html)  
 付録のコードをアセンブルして、出てきた機械語をここに投げ込んで、AT&T構文での記述方法を調べたりしました。  
 intel構文とAT&T構文それぞれで確認できます。
 

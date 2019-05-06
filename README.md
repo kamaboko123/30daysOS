@@ -80,7 +80,7 @@ tek形式で圧縮されたデータの展開ですが、一部実装できな�
 アプリの実装がメインなので、本リポジトリでは、 `day29/harib26d` の中に突っ込みました。  
 
 ## スクリーンショット(30日目)
-![ss_harib26d.png](https://raw.githubusercontent.com/kamaboko123/30daysOS/develop/ss_harib26d.png "ss_harib26d.png")
+<img src="https://raw.githubusercontent.com/kamaboko123/30daysOS/develop/ss_harib26d.png" width="640">
 
 ## 参考にさせて頂いたもの
 ### 書籍

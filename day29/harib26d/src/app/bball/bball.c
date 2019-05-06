@@ -15,7 +15,7 @@ void HariMain(void)
     };
 
     win = api_openwin(buf, 216, 237, -1, "bball");
-    api_boxfillwin(win, 8, 29, 207, 228, 0);
+    api_boxfilwin(win, 8, 29, 207, 228, 0);
     for (i = 0; i <= 14; i++) {
         for (j = i + 1; j <= 15; j++) {
             dis = j - i; /* 2つの点の距離 */

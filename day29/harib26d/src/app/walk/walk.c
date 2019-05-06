@@ -11,7 +11,7 @@ void HariMain(void){
     buf = api_malloc(160 * 100);
     win = api_openwin(buf, 160, 100, -1, "walk");
     
-    api_boxfillwin(win, 4, 24, 155, 95, 0);
+    api_boxfilwin(win, 4, 24, 155, 95, 0);
     x = 76;
     y = 56;
     api_putstrwin(win, x, y, 3, 1, "*");

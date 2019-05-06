@@ -1,8 +1,8 @@
 .arch i486
 
-#void boxfillwin(int win, int x0, int y0, int x1, int y1, int col)
-.global api_boxfillwin
-api_boxfillwin:
+#void boxfilwin(int win, int x0, int y0, int x1, int y1, int col)
+.global api_boxfilwin
+api_boxfilwin:
     push %edi
     push %esi
     push %ebp

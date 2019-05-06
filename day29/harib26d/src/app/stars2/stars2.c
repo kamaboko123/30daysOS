@@ -10,7 +10,7 @@ void HariMain(void){
     api_initmalloc();
     buf = api_malloc(150 * 100);
     win = api_openwin(buf, 150, 100, -1, "stars2");
-    api_boxfillwin(win + 1, 6, 26, 143, 93, 0); //黒
+    api_boxfilwin(win + 1, 6, 26, 143, 93, 0); //黒
     
     for(i = 0; i < 50; i ++){
         x = (_rand() % 137) + 6;

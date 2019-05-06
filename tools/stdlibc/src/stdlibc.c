@@ -220,6 +220,12 @@ int _strncmp(char *s1, char *s2, unsigned int n){
     return(*s1 - *s2);
 }
 
+int _strlen(char *str){
+    int i;
+    for(i = 0; str[i] != '\0'; i++);
+    return(i);
+}
+
 void _rand_seed(unsigned int x){
     __last_rand = x;
 }

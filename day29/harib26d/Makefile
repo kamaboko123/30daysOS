@@ -58,6 +58,10 @@ APP_DIRS = $(shell find $(APP_SRC_DIR) -maxdepth 1 -type d -not -path $(APP_SRC_
 
 PICT1 = ../../tools/pictdata/fujisan.jpg
 PICT2 = ../../tools/pictdata/night.bmp
+MML1 = ../../tools/mmldata/daigo.mml
+MML2 = ../../tools/mmldata/daiku.mml
+MML3 = ../../tools/mmldata/fujisan.mml
+MML4 = ../../tools/mmldata/kirakira.mml
 
 define make_app
 	cd $1; make;
@@ -93,6 +97,10 @@ $(IMG): $(IPL) $(OSL) $(OS) apps $(JPFONT) $(JPFONT_TEST_FILE)
 	mcopy $(JPFONT_TEST_FILE) -i $(IMG) ::
 	mcopy $(PICT1) -i $(IMG) ::
 	mcopy $(PICT2) -i $(IMG) ::
+	mcopy $(MML1) -i $(IMG) ::
+	mcopy $(MML2) -i $(IMG) ::
+	mcopy $(MML3) -i $(IMG) ::
+	mcopy $(MML4) -i $(IMG) ::
 
 $(OS): $(addprefix $(TARGET_DIR)/, $(notdir $(OS_SRC:.c=.o))) $(STDLIBC) $(ASMLIB) $(FONT)
 	ld $(LFLAGS) -o $@ -T $(OS_LS) -e HariMain --oformat=binary -Map=$(OS_MMAP) $^

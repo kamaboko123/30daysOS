@@ -162,7 +162,7 @@ void sheet_refreshsub(struct SHTCTL *ctl, int vx0, int vy0, int vx1, int vy1, in
     if(vx1 > ctl->xsize) vx1 = ctl->xsize;
     if(vy1 > ctl->ysize) vy1 = ctl->ysize;
     
-    for(h = h0; h <= ctl->top; h++){
+    for(h = h0; h <= h1; h++){
         sht = ctl->sheets[h];
         buf = sht->buf;
         sid = sht - ctl->sheets0;
@@ -288,7 +288,7 @@ void sheet_refreshmap(struct SHTCTL *ctl, int vx0, int vy0, int vx1, int vy1, in
     struct SHEET *sht;
     
     if(vx0 < 0) vx0 = 0;
-    if(vx0 < 0) vy0 = 0;
+    if(vy0 < 0) vy0 = 0;
     
     if(vx1 > ctl->xsize) vx1 = ctl->xsize;
     if(vy1 > ctl->ysize) vy1 = ctl->ysize;

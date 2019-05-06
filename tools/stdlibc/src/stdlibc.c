@@ -226,6 +226,10 @@ int _strlen(char *str){
     return(i);
 }
 
+int strtol(char *s, char **endp, int base){
+    return 0;
+}
+
 void _rand_seed(unsigned int x){
     __last_rand = x;
 }

@@ -3,7 +3,7 @@
 unsigned int __last_rand = RAND_INIT;
 
 unsigned int _sprintf(char *s, char *format, ...){
-    va_list args;
+    my_va_list args;
     
     char *s_org = s;
     char disp_digit;
@@ -15,7 +15,7 @@ unsigned int _sprintf(char *s, char *format, ...){
     int data_int;
     char pad_char;
     
-    va_start(args, format);
+    my_va_start(args, format);
     
     while(*format != '\0'){
         pad_flg = FALSE;
@@ -47,7 +47,7 @@ unsigned int _sprintf(char *s, char *format, ...){
             }
             
             if(*format == 'd' || *format == 'u'){
-                data_int = va_arg(args, int);
+                data_int = my_va_arg(args, int);
                 if(((data_int & 0x8000) != 0) && *format == 'd'){
                     
                     if(pad_char == ' '){
@@ -66,10 +66,10 @@ unsigned int _sprintf(char *s, char *format, ...){
                 }
             }
             if(*format == 'x'){
-                conv_len = _to_hex_asc(tmp, va_arg(args, int), FALSE);
+                conv_len = _to_hex_asc(tmp, my_va_arg(args, int), FALSE);
             }
             if(*format == 'X'){
-                conv_len = _to_hex_asc(tmp, va_arg(args, int), TRUE);
+                conv_len = _to_hex_asc(tmp, my_va_arg(args, int), TRUE);
             }
             
             if(pad_flg && (conv_len < disp_digit)){
@@ -92,7 +92,7 @@ next:
     }
     *s = *format;
     
-    va_end(args);
+    my_va_end(args);
     
     return ((s - s_org) / sizeof(char));
 }

@@ -1,7 +1,7 @@
 #ifndef STDLIBC_H
 #define STDLIBC_H
 
-#include <stdarg.h>
+#include "arg.h"
 
 #define TRUE 1
 #define FALSE 0

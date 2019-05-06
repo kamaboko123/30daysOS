@@ -7,7 +7,7 @@ INCLUDE = -I ../lib/include -I $(STDLIB_DIR)/include
 LFLAGS = -m elf_i386
 
 LIB = $(TARGET_DIR)/lib/apilib.lib
-LS = ../../../scripts/app_large_stack.lds
+LS = ../../../scripts/app_super_large_stack.lds
 
 STDLIB_DIR = ../../../../../tools/stdlibc
 STDLIB = $(STDLIB_DIR)/bin/stdlibc.o

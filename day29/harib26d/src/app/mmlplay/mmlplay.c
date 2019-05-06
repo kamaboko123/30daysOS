@@ -1,7 +1,7 @@
 #include "apilib.h"
 #include "stdlibc.h"
 
-int _strtol(char *s, char **endp, int base); /* 標準関数（stdlib.h） */
+int __strtol(char *s, char **endp, int base); /* 標準関数（stdlib.h） */
 
 void waittimer(int timer, int time);
 void end(char *s);
@@ -147,7 +147,7 @@ file_error:
             }
             /* 音長計算 */
             if ('0' <= *p && *p <= '9') {
-                i = 192 / strtol(p, &p, 10);
+                i = 192 / _strtol(p, &p, 10);
             } else {
                 i = l;
             }
@@ -180,11 +180,11 @@ file_error:
             p++;
             o++;
         } else if (*p == 'O') { /* オクターブ指定 */
-            o = strtol(p + 1, &p, 10);
+            o = _strtol(p + 1, &p, 10);
         } else if (*p == 'Q') { /* Qパラメータ指定 */
-            q = strtol(p + 1, &p, 10);
+            q = _strtol(p + 1, &p, 10);
         } else if (*p == 'L') { /* デフォルト音長指定 */ 
-            l = strtol(p + 1, &p, 10);
+            l = _strtol(p + 1, &p, 10);
             if (l == 0) {
                 goto syntax_error;
             }
@@ -194,7 +194,7 @@ file_error:
                 l += l / 2;
             }
         } else if (*p == 'T') { /* テンポ指定 */
-            t = strtol(p + 1, &p, 10);
+            t = _strtol(p + 1, &p, 10);
         } else if (*p == '$') { /* 拡張コマンド */
             if (p[1] == 'K') {  /* カラオケコマンド */
                 p += 2;

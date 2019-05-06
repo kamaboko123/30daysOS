@@ -79,7 +79,10 @@ tek形式で圧縮されたデータの展開ですが、一部実装できな�
 ### 30日目
 アプリの実装がメインなので、本リポジトリでは、 `day29/harib26d` の中に突っ込みました。  
 
-## 参考にさせて頂いたもの（まだ開発終わってないのでこれからもっと増えます）
+## スクリーンショット(30日目)
+![ss_harib26d.png](https://raw.githubusercontent.com/kamaboko123/30daysOS/develop/ss_harib26d.png "ss_harib26d.png")
+
+## 参考にさせて頂いたもの
 ### 書籍
 
 [30日でできる！ OS自作入門](https://www.amazon.co.jp/dp/B00IR1HYI0)  

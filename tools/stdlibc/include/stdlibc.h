@@ -24,7 +24,7 @@ int _memset(char *buf, char byte, int n);
 int _strcmp(char *s1, char *s2);
 int _strncmp(char *s1, char *s2, unsigned int n);
 int _strlen(char *str);
-int strtol(char *s, char **endp, int base);
+int _strtol(char *s, char **endp, int base);
 
 void _rand_seed(unsigned int x);
 unsigned int _rand();

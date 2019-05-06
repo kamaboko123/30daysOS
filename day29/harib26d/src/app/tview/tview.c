@@ -1,7 +1,7 @@
 #include "apilib.h"
 #include "stdlibc.h"
 
-int strtol(char *s, char **endp, int base); /* 標準関数（stdlib.h） */
+int _strtol(char *s, char **endp, int base); /* 標準関数（stdlib.h） */
 
 char *skipspace(char *p);
 void textview(int win, int w, int h, int xskip, char *p, int tab, int lang);
@@ -22,7 +22,7 @@ void HariMain(void)
         p = skipspace(p);
         if (*p == '-') {
             if (p[1] == 'w') {
-                w = strtol(p + 2, &p, 0);
+                w = _strtol(p + 2, &p, 0);
                 if (w < 20) {
                     w = 20;
                 }
@@ -30,7 +30,7 @@ void HariMain(void)
                     w = 126;
                 }
             } else if (p[1] == 'h') {
-                h = strtol(p + 2, &p, 0);
+                h = _strtol(p + 2, &p, 0);
                 if (h < 1) {
                     h = 1;
                 }
@@ -38,7 +38,7 @@ void HariMain(void)
                     h = 45;
                 }
             } else if (p[1] == 't') {
-                t = strtol(p + 2, &p, 0);
+                t = _strtol(p + 2, &p, 0);
                 if (t < 1) {
                     t = 4;
                 }

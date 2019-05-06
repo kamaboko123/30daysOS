@@ -6,7 +6,7 @@ CFLAGS = -nostdlib -m32 -fno-builtin -O0 -fno-common
 LFLAGS = -m elf_i386
 
 LIB = $(TARGET_DIR)/lib/apilib.lib
-LS = ../../../scripts/app_very_large_stack.lds
+LS = ../../../scripts/app_super_large_stack.lds
 
 STDLIB_DIR = ../../../../../tools/stdlibc
 STDLIB = $(STDLIB_DIR)/bin/stdlibc.o

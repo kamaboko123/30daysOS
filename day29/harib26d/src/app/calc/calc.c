@@ -3,7 +3,7 @@
 
 #define INVALID     -0x7fffffff
 
-int strtol(char *s, char **endp, int base); /* 標準関数（stdlib.h） */
+int _strtol(char *s, char **endp, int base); /* 標準関数（stdlib.h） */
 
 char *skipspace(char *p);
 int getnum(char **pp, int priority);
@@ -62,7 +62,7 @@ int getnum(char **pp, int priority)
             i = INVALID;
         }
     } else if ('0' <= *p && *p <= '9') { /* 数値 */
-        i = strtol(p, &p, 0);
+        i = _strtol(p, &p, 0);
     } else { /* エラー */
         i = INVALID;
     }

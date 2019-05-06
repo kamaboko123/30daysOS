@@ -1,5 +1,5 @@
 CC = gcc
-CFLAGS = -nostdlib -m32 -fno-builtin -g
+CFLAGS = -nostdlib -m32 -fno-builtin -g -Wall
 INCLUDE = -I include
 
 TARGET_DIR = bin
